@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 )
 
@@ -78,4 +79,21 @@ func (a *App) GetSLOC(filePath string) int {
 	}
 
 	return sloc
+}
+
+func (a *App) GetDiff(arg1 string, arg2 string) string {
+	// Run the 'git diff' command with the provided file paths
+	cmd := exec.Command("git", "diff", arg1, arg2)
+
+	// Capture the command output
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		fmt.Printf("Error running 'git diff': %v\n", err)
+		fmt.Println(string(output))
+		os.Exit(1)
+	}
+
+	// Print the diff output
+	fmt.Println(string(output))
+	return string(output)
 }
