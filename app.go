@@ -81,9 +81,19 @@ func (a *App) GetSLOC(filePath string) int {
 	return sloc
 }
 
-func (a *App) GetDiff(arg1 string, arg2 string) string {
+func (a *App) GetFileDiff(firstFilePath string, secondFilePath string) string {
+	// Run the 'unix diff' command with the provided file paths
+	cmd := exec.Command("diff", firstFilePath, secondFilePath)
+
+	// Capture the command output
+	output, _ := cmd.CombinedOutput()
+
+	return string(output)
+}
+
+func (a *App) GetCommitDiff(firstCommit string, secondCommit string) string {
 	// Run the 'git diff' command with the provided file paths
-	cmd := exec.Command("git", "diff", arg1, arg2)
+	cmd := exec.Command("git", "diff", firstCommit, secondCommit)
 
 	// Capture the command output
 	output, err := cmd.CombinedOutput()
@@ -93,7 +103,5 @@ func (a *App) GetDiff(arg1 string, arg2 string) string {
 		os.Exit(1)
 	}
 
-	// Print the diff output
-	fmt.Println(string(output))
 	return string(output)
 }

@@ -1,6 +1,6 @@
 import "./index.css"
 import { onMount, type Component } from "solid-js"
-import { Greet, GetSLOC, GetDiff } from "../wailsjs/go/main/App"
+import { Greet, GetSLOC, GetFileDiff } from "../wailsjs/go/main/App"
 
 import logo from "./logo.svg"
 import styles from "./App.module.css"
@@ -27,7 +27,7 @@ const App: Component = () => {
   onMount(() => {
     // TODO Call App.GetSLOC()
     try {
-      GetDiff("./fixture/test.php", "./fixture/vest.php")
+      GetFileDiff("./fixture/test.php", "./fixture/vest.php")
         .then(result => {
           console.log(result)
         })
