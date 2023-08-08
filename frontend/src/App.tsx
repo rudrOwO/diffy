@@ -1,6 +1,6 @@
 import "./index.css"
-import type { Component } from "solid-js"
-import { Greet } from "../wailsjs/go/main/App"
+import { onMount, type Component } from "solid-js"
+import { Greet, GetSLOC } from "../wailsjs/go/main/App"
 
 import logo from "./logo.svg"
 import styles from "./App.module.css"
@@ -23,6 +23,21 @@ const App: Component = () => {
       console.error(err)
     }
   }
+
+  onMount(() => {
+    // TODO Call App.GetSLOC()
+    try {
+      GetSLOC("./fixture/test.php")
+        .then(result => {
+          console.log(result)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    } catch (err) {
+      console.error(err)
+    }
+  })
 
   return (
     <div class={styles.App}>
