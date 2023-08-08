@@ -91,9 +91,9 @@ func (a *App) GetFileDiff(firstFilePath string, secondFilePath string) string {
 	return string(output)
 }
 
-func (a *App) GetCommitDiff(firstCommit string, secondCommit string) string {
+func (a *App) GetCommitDiff(firstCommit string, secondCommit string, projectPath string) string {
 	// Run the 'git diff' command with the provided file paths
-	cmd := exec.Command("git", "diff", firstCommit, secondCommit)
+	cmd := exec.Command("git", "diff", firstCommit, secondCommit, "--", projectPath)
 
 	// Capture the command output
 	output, err := cmd.CombinedOutput()
