@@ -102,6 +102,5 @@ func (a *App) GetCommitDiff(firstCommit string, secondCommit string) string {
 		fmt.Println(string(output))
 		os.Exit(1)
 	}
-
 	return string(output)
 }
