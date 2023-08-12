@@ -3,6 +3,7 @@
   "name": "diffy",
   "outputfilename": "diffy",
   "devServer": "localhost:5000",
+  "build:dir": "../build",
   "frontend:dir": "../frontend",
   "frontend:install": "pnpm install",
   "frontend:build": "pnpm run build",
