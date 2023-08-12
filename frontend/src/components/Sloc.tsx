@@ -1,5 +1,5 @@
 import { createSignal, type Component } from "solid-js"
-import { GetSLOC } from "../../wailsjs/go/main/App"
+import { GetSLOC } from "../../wailsjs/go/app/App"
 import FilenameInput from "./FilenameInput"
 
 const Sloc: Component = () => {
