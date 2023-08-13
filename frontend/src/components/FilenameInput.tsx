@@ -11,7 +11,7 @@ const FilenameInput: Component<Props> = ({ setFileName }) => {
       class="text-black p-2 border-black border-2 rounded-lg"
       onChange={e => {
         const fileName = e.currentTarget!.files![0].name ?? ""
-        setFileName("../test/v1/" + fileName)
+        setFileName("test/v1/" + fileName)
       }}
     />
   )

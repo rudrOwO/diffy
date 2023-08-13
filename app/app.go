@@ -21,7 +21,7 @@ func NewApp() *App {
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
-func (a *App) Startup(ctx context.Context) {
+func (a *App) SetContext(ctx context.Context) {
 	a.ctx = ctx
 }
 
@@ -29,11 +29,12 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
+// registering methods with the application context (ctx)
 func (a *App) GetSLOC(filePath string) int {
 	file, err := os.Open(filePath)
 
 	if err != nil {
-		panic("Error opening file:")
+		panic("Error opening file:" + filePath)
 	}
 
 	defer file.Close()

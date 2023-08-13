@@ -17,3 +17,7 @@ export function GetSLOC(arg1) {
 export function Greet(arg1) {
   return window['go']['app']['App']['Greet'](arg1);
 }
+
+export function SetContext(arg1) {
+  return window['go']['app']['App']['SetContext'](arg1);
+}
