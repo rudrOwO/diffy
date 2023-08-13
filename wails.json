@@ -1,6 +1,7 @@
 {
   "$schema": "https://wails.io/schemas/config.v2.json",
   "name": "diffy",
+  "reloaddirs": "app",
   "outputfilename": "diffy",
   "devServer": "localhost:5000",
   "frontend:install": "pnpm install",
