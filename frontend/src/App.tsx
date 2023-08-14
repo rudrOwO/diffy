@@ -1,15 +1,12 @@
-import "./index.css"
-import { onMount, type Component } from "solid-js"
+import { type Component } from "solid-js"
 import Sloc from "./components/Sloc"
-
-import styles from "./App.module.css"
 
 const App: Component = () => {
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
+    <div class="bg-pm-dark-1 h-[100vh] w-[100vw] flex flex-col justify-evenly content-center ">
+      <div class="w-[100%w] md:[70%] lg:[70%] grid place-content-center">
         <Sloc />
-      </header>
+      </div>
     </div>
   )
 }
