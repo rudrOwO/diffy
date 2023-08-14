@@ -4,7 +4,7 @@ import FilenameInput from "./FilenameInput"
 
 const FileDiff: Component = () => {
   onMount(() => {
-    GetFileDiff("test/v1/test.cpp", "test/v1/vest.cpp")
+    GetFileDiff("/home/rudro/Dev/diffy/test/v1/test.php", "/home/rudro/Dev/diffy/test/v1/vest.php")
       .then(res => {
         console.log(res)
       })
