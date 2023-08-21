@@ -1,6 +1,6 @@
 import { createSignal, type Component } from "solid-js"
 
-interface Props {
+type Props = {
   setFileName: (fileName: string) => void
 }
 

@@ -1,13 +1,14 @@
 import { createSignal, type Component, Show } from "solid-js"
 import { GetSLOC } from "../../wailsjs/go/app/App"
 import FilePathInput from "./file-path-input"
+import Box from "./layouts/box"
 
 const Sloc: Component = () => {
   const [fileName, setFileName] = createSignal("")
   const [sloc, setSloc] = createSignal("")
 
   return (
-    <div class="flex flex-col items-center justify-center p-4 rounded-lg shadow-lgw bg-gray-300 gap-6 w-full">
+    <Box>
       <span class="text-black rounded-lg p-2">Chose a PHP file to calucate SLOC</span>
       <FilePathInput setFileName={setFileName} />
       <button
@@ -30,7 +31,7 @@ const Sloc: Component = () => {
         <span class="font-bold text-black">Get SLOC</span>
       </button>
       <div class="font-bold text-black">{sloc()}</div>
-    </div>
+    </Box>
   )
 }
 
