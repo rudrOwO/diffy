@@ -8,4 +8,6 @@ export function GetFileDiff(arg1:string,arg2:string):Promise<string>;
 
 export function GetSLOC(arg1:string):Promise<number>;
 
+export function PromptForFilePath():Promise<string>;
+
 export function SetContext(arg1:context.Context):Promise<void>;

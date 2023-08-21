@@ -4,28 +4,27 @@ import FilePathInput from "./file-path-input"
 import Box from "./layouts/box"
 
 const Sloc: Component = () => {
-  const [fileName, setFileName] = createSignal("")
+  const [filePath, setFilePath] = createSignal("")
   const [sloc, setSloc] = createSignal("")
 
   return (
     <Box>
       <span class="text-black rounded-lg p-2">Chose a PHP file to calucate SLOC</span>
-      <FilePathInput setFileName={setFileName} />
+      <FilePathInput setFilePath={setFilePath} title="Chose File" />
       <button
         class="border-2 border-black rounded-lg p-2 hover:bg-slate-400"
-        onClick={() => {
-          if (fileName() === "") {
+        onClick={async () => {
+          if (filePath() === "") {
             setSloc("Please chose a file first")
             return
           }
 
-          GetSLOC(fileName())
-            .then(result => {
-              setSloc("Chosen file has " + result.toString() + " SLOC")
-            })
-            .catch(err => {
-              console.error(err)
-            })
+          try {
+            const sloc = await GetSLOC(filePath())
+            setSloc("Chosen file has " + sloc.toString() + " SLOC")
+          } catch (error) {
+            console.error(error)
+          }
         }}
       >
         <span class="font-bold text-black">Get SLOC</span>

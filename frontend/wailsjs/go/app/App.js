@@ -14,6 +14,10 @@ export function GetSLOC(arg1) {
   return window['go']['app']['App']['GetSLOC'](arg1);
 }
 
+export function PromptForFilePath() {
+  return window['go']['app']['App']['PromptForFilePath']();
+}
+
 export function SetContext(arg1) {
   return window['go']['app']['App']['SetContext'](arg1);
 }

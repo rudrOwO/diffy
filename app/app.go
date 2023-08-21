@@ -2,8 +2,11 @@ package app
 
 import (
 	"context"
+	"fmt"
+	"os"
 
 	source_analysis "github.com/rudrOwO/diffy/app/source_analysis"
+	runtime "github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 type App struct {
@@ -31,4 +34,31 @@ func (a *App) GetFileDiff(firstFilePath string, secondFilePath string) string {
 
 func (a *App) GetCommitDiff(firstCommit string, secondCommit string, projectPath string) string {
 	return source_analysis.GetCommitDiff(firstCommit, secondCommit, projectPath)
+}
+
+func (a *App) PromptForFilePath() string {
+	var currentDirectoryPath string
+
+	if runtime.Environment(a.ctx).BuildType == "dev" {
+		currentDirectoryPath = "/home/rudro/Dev/test"
+	} else {
+		currentDirectoryPath, _ = os.Getwd()
+	}
+
+	filePath, err := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{
+		DefaultDirectory: currentDirectoryPath,
+		Title:            "Chose a PHP file",
+		Filters: []runtime.FileFilter{
+			{
+				DisplayName: "PHP Files (*.php)",
+				Pattern:     "*.php",
+			},
+		},
+	})
+
+	if err != nil {
+		fmt.Println("Error in Prompt", err)
+	}
+
+	return filePath
 }
