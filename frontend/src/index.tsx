@@ -3,7 +3,7 @@ import "./global.css"
 import "diff2html/bundles/css/diff2html.min.css"
 import { render } from "solid-js/web"
 import { Router, Routes, Route } from "@solidjs/router"
-import App from "./App"
+import App from "./app"
 
 const root = document.getElementById("root")
 

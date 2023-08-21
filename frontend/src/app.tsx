@@ -1,5 +1,5 @@
 import { type Component } from "solid-js"
-import Sloc from "./components/Sloc"
+import Sloc from "./components/sloc"
 
 const App: Component = () => {
   return (
