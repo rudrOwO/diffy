@@ -1,14 +1,18 @@
 {
-  "name": "vite-template-solid",
-  "version": "0.0.0",
-  "description": "",
+  "name": "diffy-frontend",
+  "version": "0.2.0",
+  "author": {
+    "name": "Dardaul Hoque",
+    "email": "rudro1152@gmail.com"
+  },
+  "license": "MIT",
+  "description": "A toy file diffing tool",
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
-  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.14",
     "babel-plugin-solid-undestructure": "^1.1.0",
@@ -21,6 +25,7 @@
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
+    "@solidjs/router": "^0.8.3",
     "diff2html": "^3.4.40",
     "solid-js": "^1.7.6"
   }
