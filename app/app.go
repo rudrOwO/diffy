@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	source_analysis "github.com/rudrOwO/diffy/app/source_analysis"
+	source_analysis "github.com/rudrOwO/php-code-analyzer/app/source_analysis"
 	runtime "github.com/wailsapp/wails/v2/pkg/runtime"
 )
 

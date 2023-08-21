@@ -1,8 +1,8 @@
 {
   "$schema": "https://wails.io/schemas/config.v2.json",
-  "name": "diffy",
+  "name": "php-code-analyzer",
   "reloaddirs": "app",
-  "outputfilename": "diffy",
+  "outputfilename": "php-code-analyzer",
   "devServer": "localhost:5000",
   "frontend:install": "pnpm install",
   "frontend:build": "pnpm run build",

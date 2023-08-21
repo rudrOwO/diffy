@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	app "github.com/rudrOwO/diffy/app"
-	frontend "github.com/rudrOwO/diffy/frontend"
+	app "github.com/rudrOwO/php-code-analyzer/app"
+	frontend "github.com/rudrOwO/php-code-analyzer/frontend"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -17,7 +17,7 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:       "diffy",
+		Title:       "PHP Code Analyzer",
 		StartHidden: true,
 		Width:       1024,
 		Height:      768,

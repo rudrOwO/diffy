@@ -1,4 +1,4 @@
-module github.com/rudrOwO/diffy
+module github.com/rudrOwO/php-code-analyzer
 
 go 1.20
 
