@@ -8,11 +8,11 @@ const Sloc: Component = () => {
   const [sloc, setSloc] = createSignal("")
 
   return (
-    <Box>
-      <span class="text-black rounded-lg p-2">Chose a PHP file to calucate SLOC</span>
+    <Box title="Chose a PHP file to calucate SLOC">
       <FilePathInput setFilePath={setFilePath} title="Chose File" />
       <button
-        class="border-2 border-black rounded-lg p-2 hover:bg-slate-400"
+        type="button"
+        class="text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 hover:bg-slate-300"
         onClick={async () => {
           if (filePath() === "") {
             setSloc("Please chose a file first")
@@ -27,9 +27,9 @@ const Sloc: Component = () => {
           }
         }}
       >
-        <span class="font-bold text-black">Get SLOC</span>
+        <span class="font-bold">Get SLOC</span>
       </button>
-      <div class="font-bold text-black">{sloc()}</div>
+      <div class="font-bold">{sloc()}</div>
     </Box>
   )
 }
