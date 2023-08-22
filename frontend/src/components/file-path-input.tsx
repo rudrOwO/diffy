@@ -1,9 +1,10 @@
-import { onMount, type Component } from "solid-js"
+import { onMount, type Component, type Setter } from "solid-js"
 import { PromptForFilePath } from "../../wailsjs/go/app/App"
+import { BsFiletypePhp } from "solid-icons/bs"
 
 type Props = {
   title: string
-  setFilePath: (fileName: string) => void
+  setFilePath: Setter<string>
 }
 
 const FilePathInput: Component<Props> = ({ setFilePath, title }) => {
