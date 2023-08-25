@@ -1,10 +1,13 @@
 import { type Component } from "solid-js"
 import Sloc from "./components/sloc"
 
-// TODO - Add file inidicator icon to file-path-input
+// TODO - Add file indicator icon to file-path-input
 // TODO - Add diff render component
 // TODO - Add file diff panel
-// TODO - Add project diff panel
+
+// TODO - Rewrite Go method for calculating folder diffs
+// TODO - Add folder diff panel
+
 // TODO - Add Go method for calculating cyclomatic complexity
 // TODO - Add cycloamtic complexity panel
 

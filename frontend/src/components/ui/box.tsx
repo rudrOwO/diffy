@@ -1,4 +1,4 @@
-import { Component, JSX } from "solid-js"
+import type { Component, JSX } from "solid-js"
 import { twMerge } from "tailwind-merge"
 
 type Props = {
@@ -7,15 +7,15 @@ type Props = {
   children?: JSX.Element | JSX.Element[]
 }
 
-const Box: Component<Props> = ({ class: classProp, children, title }) => (
+const Box: Component<Props> = props => (
   <div
     class={twMerge(
       "text-black text-md md:text-lg lg:text-xl box-border flex flex-col items-center justify-center p-6 rounded-lg bg-[#f1f1f1] gap-6 w-full shadow-xl",
-      classProp
+      props.class
     )}
   >
-    <p class="text-center rounded-lg">{title}</p>
-    {children}
+    <p class="text-center rounded-lg">{props.title}</p>
+    {props.children}
   </div>
 )
 

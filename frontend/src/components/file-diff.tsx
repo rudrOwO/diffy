@@ -1,6 +1,6 @@
 import { createSignal, type Component, onMount } from "solid-js"
 import { GetFileDiff } from "../../wailsjs/go/app/App"
-import FilePathInput from "./file-path-input"
+import FilePathInput from "./ui/file-path-input"
 
 const FileDiff: Component = () => {
   return (
