@@ -1,24 +1,23 @@
-import { createSignal, type Component, Show } from "solid-js"
+import { createSignal, type Component } from "solid-js"
 import { GetSLOC } from "../../wailsjs/go/app/App"
 import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"
 import Button from "./ui/button"
+import { setToastErrorMessage } from "./ui/error-toast"
 
 const Sloc: Component = () => {
-  const [isButtonDisabled, setIsButtonDisabled] = createSignal(false)
   const [filePath, setFilePath] = createSignal("")
   const [sloc, setSloc] = createSignal("")
+  const isButtonDisabled = () => filePath() === ""
 
   const handleSLOCRetrieval = async () => {
-    if (filePath() === "") {
-      setSloc("Please chose a file first")
-      return
-    }
-
     try {
       const sloc = await GetSLOC(filePath())
       setSloc("Chosen file has " + sloc.toString() + " SLOC")
-    } catch (_) {}
+    } catch (_) {
+      setToastErrorMessage("Error retrieving SLOC")
+      setFilePath("")
+    }
   }
 
   return (

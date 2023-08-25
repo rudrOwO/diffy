@@ -4,6 +4,7 @@ import "diff2html/bundles/css/diff2html.min.css"
 import { render } from "solid-js/web"
 import { Router, Routes, Route } from "@solidjs/router"
 import App from "./app"
+import ErrorToast from "./components/ui/error-toast"
 
 const root = document.getElementById("root")
 
@@ -15,11 +16,14 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(
   () => (
-    <Router>
-      <Routes>
-        <Route path="/" component={App} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" component={App} />
+        </Routes>
+      </Router>
+      <ErrorToast />
+    </>
   ),
   root!
 )
