@@ -4,6 +4,7 @@ import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"
 
 const Sloc: Component = () => {
+  const [isButtonDisabled, setIsButtonDisabled] = createSignal(false)
   const [filePath, setFilePath] = createSignal("")
   const [sloc, setSloc] = createSignal("")
 
@@ -24,7 +25,10 @@ const Sloc: Component = () => {
       <FilePathInput setFilePath={setFilePath} title="Chose File" />
       <button
         type="button"
-        class="text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 hover:bg-slate-300"
+        class={
+          "text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
+          (isButtonDisabled() ? "opacity-50" : "hover:bg-slate-300")
+        }
         onClick={handleSLOCRetrieval}
       >
         <span class="font-bold">Get SLOC</span>

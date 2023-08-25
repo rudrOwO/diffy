@@ -1,5 +1,6 @@
 import { type Component } from "solid-js"
 import Sloc from "./components/sloc"
+import Toast from "./components/ui/toast"
 
 // TODO - Add file indicator icon to file-path-input
 // TODO - Add diff render component
@@ -17,6 +18,7 @@ const App: Component = () => {
       <div class="w-[90%] md:w-[60%] lg:w-[50%] flex flex-col items-center">
         <Sloc />
       </div>
+      <Toast message="Testing this toaster ababababab" />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 /* @refresh reload */
-import "./global.css"
+import "./styles/global.css"
 import "diff2html/bundles/css/diff2html.min.css"
 import { render } from "solid-js/web"
 import { Router, Routes, Route } from "@solidjs/router"
