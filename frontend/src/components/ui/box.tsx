@@ -7,15 +7,15 @@ type Props = {
   children?: JSX.Element | JSX.Element[]
 }
 
-const Box: Component<Props> = props => (
+const Box: Component<Props> = p => (
   <div
     class={twMerge(
       "text-black text-md md:text-lg lg:text-xl flex flex-col items-center justify-center p-6 rounded-lg bg-[#f1f1f1] gap-6 w-full shadow-xl",
-      props.class
+      p.class
     )}
   >
-    <p class="text-center rounded-lg">{props.title}</p>
-    {props.children}
+    <p class="text-center rounded-lg">{p.title}</p>
+    {p.children}
   </div>
 )
 

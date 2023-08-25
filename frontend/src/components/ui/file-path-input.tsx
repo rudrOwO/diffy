@@ -2,16 +2,14 @@ import type { Component, Setter } from "solid-js"
 import { PromptForFilePath } from "../../../wailsjs/go/app/App"
 import { BsFiletypePhp } from "solid-icons/bs"
 
-type Props = {
+const FilePathInput: Component<{
   title: string
   setFilePath: Setter<string>
-}
-
-const FilePathInput: Component<Props> = props => {
+}> = p => {
   const handleFileSelection = async () => {
     try {
       const filePath = await PromptForFilePath()
-      props.setFilePath(filePath)
+      p.setFilePath(filePath)
     } catch (_) {}
   }
 
@@ -21,7 +19,7 @@ const FilePathInput: Component<Props> = props => {
       onClick={handleFileSelection}
       class="text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 hover:bg-slate-300"
     >
-      <span class="font-bold">{props.title}</span>
+      <span class="font-bold">{p.title}</span>
     </button>
   )
 }
