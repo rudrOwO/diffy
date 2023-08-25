@@ -1,7 +1,6 @@
 import { type Component } from "solid-js"
 import Sloc from "./components/sloc"
 
-// TODO - Add file indicator icon to file-path-input
 // TODO - Add diff render component
 // TODO - Add file diff panel
 

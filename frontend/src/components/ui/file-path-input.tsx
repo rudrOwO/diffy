@@ -23,7 +23,16 @@ const FilePathInput: Component<{
     setIsInputDisabled(false)
   }
 
-  return <Button title={p.title} isDisabled={isInputDisabled()} onClick={handleFileSelection} />
+  return (
+    <div class="flex gap-2 justify-evenly items-center">
+      <Button
+        title={p.title}
+        icon={<BsFiletypePhp size="1.25rem" />}
+        isDisabled={isInputDisabled()}
+        onClick={handleFileSelection}
+      />
+    </div>
+  )
 }
 
 export default FilePathInput

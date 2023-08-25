@@ -4,6 +4,7 @@ import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"
 import Button from "./ui/button"
 import { setToastErrorMessage } from "./ui/error-toast"
+import { FaSolidTerminal } from "solid-icons/fa"
 
 const Sloc: Component = () => {
   const [filePath, setFilePath] = createSignal("")
@@ -23,7 +24,12 @@ const Sloc: Component = () => {
   return (
     <Box title="Chose a PHP file to calucate SLOC">
       <FilePathInput setFilePath={setFilePath} title="Chose File" />
-      <Button title="Get SLOC" isDisabled={isButtonDisabled()} onClick={handleSLOCRetrieval} />
+      <Button
+        title="Get SLOC"
+        icon={<FaSolidTerminal size="1rem" />}
+        isDisabled={isButtonDisabled()}
+        onClick={handleSLOCRetrieval}
+      />
       <div class="font-bold">{sloc()}</div>
     </Box>
   )

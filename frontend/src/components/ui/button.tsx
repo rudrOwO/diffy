@@ -1,23 +1,25 @@
-import { Component } from "solid-js"
+import { type Component, Show, type JSXElement } from "solid-js"
 
 const Button: Component<{
   title: string
+  icon?: JSXElement
   isDisabled?: Boolean
   onClick: () => void
-}> = p => {
-  return (
-    <button
-      type="button"
-      disabled={!!p.isDisabled}
-      class={
-        "text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
-        (p.isDisabled ? "opacity-50" : "hover:bg-slate-300")
-      }
-      onClick={p.onClick}
-    >
+}> = p => (
+  <button
+    type="button"
+    disabled={!!p.isDisabled}
+    class={
+      "text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
+      (p.isDisabled ? "opacity-50" : "hover:bg-slate-300")
+    }
+    onClick={p.onClick}
+  >
+    <div class="flex justify-evenly items-center gap-2">
+      {p.icon}
       {p.title}
-    </button>
-  )
-}
+    </div>
+  </button>
+)
 
 export default Button
