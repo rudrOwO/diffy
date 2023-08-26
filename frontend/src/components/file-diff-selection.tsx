@@ -7,10 +7,11 @@ import { setToastErrorMessage } from "./ui/error-toast"
 import { AiFillDiff } from "solid-icons/ai"
 import { useNavigate } from "@solidjs/router"
 
+const [firstFilePath, setFirstFilePath] = createSignal("")
+const [secondFilePath, setSecondFilePath] = createSignal("")
+
 const FileDiffSelection: Component = () => {
   const navigate = useNavigate()
-  const [firstFilePath, setFirstFilePath] = createSignal("")
-  const [secondFilePath, setSecondFilePath] = createSignal("")
   const isDiffLinkDisabled = () => firstFilePath() === "" || secondFilePath() === ""
 
   createEffect(async () => {

@@ -32,8 +32,8 @@ func (a *App) GetFileDiff(firstFilePath string, secondFilePath string) string {
 	return source_analysis.GetFileDiff(firstFilePath, secondFilePath)
 }
 
-func (a *App) GetCommitDiff(firstCommit string, secondCommit string, projectPath string) string {
-	return source_analysis.GetCommitDiff(firstCommit, secondCommit, projectPath)
+func (a *App) GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
+	return source_analysis.GetFolderDiff(firstFolderPath, secondFolderPath)
 }
 
 func (a *App) PromptForFilePath() string {

@@ -4,10 +4,10 @@ import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"
 import { setToastErrorMessage } from "./ui/error-toast"
 
-const Sloc: Component = () => {
-  const [filePath, setFilePath] = createSignal("")
-  const [sloc, setSloc] = createSignal("")
+const [filePath, setFilePath] = createSignal("")
+const [sloc, setSloc] = createSignal("")
 
+const Sloc: Component = () => {
   createEffect(async () => {
     if (filePath() === "") {
       return
