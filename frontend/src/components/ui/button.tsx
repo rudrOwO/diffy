@@ -1,14 +1,14 @@
-import { type Component, Show, type JSXElement } from "solid-js"
+import { type Component, type JSXElement } from "solid-js"
 
 const Button: Component<{
   title: string
   icon?: JSXElement
-  isDisabled?: Boolean
+  isDisabled?: boolean
   onClick: () => void
 }> = p => (
   <button
     type="button"
-    disabled={!!p.isDisabled}
+    disabled={p.isDisabled}
     class={
       "text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
       (p.isDisabled ? "opacity-50" : "hover:bg-slate-300")
