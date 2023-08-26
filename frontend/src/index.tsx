@@ -1,10 +1,10 @@
 /* @refresh reload */
 import "./styles/global.css"
-import "diff2html/bundles/css/diff2html.min.css"
 import { render } from "solid-js/web"
 import { Router, Routes, Route } from "@solidjs/router"
 import App from "./app"
 import ErrorToast from "./components/ui/error-toast"
+import DiffRenderer from "./components/diff-renderer"
 
 const root = document.getElementById("root")
 
@@ -20,6 +20,7 @@ render(
       <Router>
         <Routes>
           <Route path="/" component={App} />
+          <Route path="/diff" component={DiffRenderer} />
         </Routes>
       </Router>
       <ErrorToast />

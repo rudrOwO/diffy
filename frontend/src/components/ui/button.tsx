@@ -11,7 +11,7 @@ const Button: Component<{
     disabled={p.isDisabled}
     class={
       "text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
-      (p.isDisabled ? "opacity-50" : "hover:bg-slate-300")
+      (p.isDisabled ? "opacity-40" : "hover:bg-slate-300")
     }
     onClick={p.onClick}
   >
