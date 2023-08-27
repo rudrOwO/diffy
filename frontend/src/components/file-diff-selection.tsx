@@ -7,6 +7,7 @@ import { setToastErrorMessage } from "./ui/error-toast"
 import { AiFillDiff } from "solid-icons/ai"
 import { useNavigate } from "@solidjs/router"
 import { setDiffString } from "./diff-renderer"
+import { globalIteractionLock } from "../app"
 
 /* NOTE 
   These signals are global to prevent an unnecessary re-render
@@ -46,7 +47,7 @@ const FileDiffSelection: Component = () => {
       </div>
       <Button
         title="Show Diff"
-        isDisabled={!bothFilesSelected()}
+        isDisabled={!bothFilesSelected() || globalIteractionLock()}
         icon={<AiFillDiff size="1rem" />}
         onClick={handleNavigation}
       />

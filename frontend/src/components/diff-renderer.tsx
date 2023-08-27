@@ -17,7 +17,7 @@ const DiffRenderer: Component<{}> = () => {
   }
 
   return (
-    <div class="bg-[#fafafa] h-[100vh] w-[100vw]">
+    <div class="bg-[#fafafa]">
       <div class="flex flex-col justify-evenly relative m-3">
         <div class="sticky left-2 top-2 my-2">
           <Button

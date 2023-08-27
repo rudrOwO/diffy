@@ -1,4 +1,4 @@
-import { type Component } from "solid-js"
+import { type Component, createSignal } from "solid-js"
 import Sloc from "./components/sloc"
 import FileDiffSelection from "./components/file-diff-selection"
 
@@ -8,6 +8,8 @@ import FileDiffSelection from "./components/file-diff-selection"
 
 // TODO - Add folder diff panel
 // TODO - Add cycloamtic complexity panel
+
+export const [globalIteractionLock, setGlobalInteractionLock] = createSignal(false)
 
 const App: Component = () => (
   <div class="bg-[#fafafa] h-[100vh] w-[100vw] grid place-items-center">

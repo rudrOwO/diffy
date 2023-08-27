@@ -1,17 +1,16 @@
-import { createSignal, type Component, type Setter } from "solid-js"
+import { type Component, type Setter } from "solid-js"
 import Button from "./button"
 import { PromptForFilePath } from "../../../wailsjs/go/app/App"
 import { setToastErrorMessage } from "./error-toast"
 import { BsFiletypePhp } from "solid-icons/bs"
+import { globalIteractionLock, setGlobalInteractionLock } from "../../app"
 
 const PathInput: Component<{
   title: string
   setFilePath: Setter<string>
 }> = p => {
-  const [isInputDisabled, setIsInputDisabled] = createSignal(false)
-
   const handleFileSelection = async () => {
-    setIsInputDisabled(true)
+    setGlobalInteractionLock(true)
 
     try {
       const filePath = await PromptForFilePath()
@@ -20,7 +19,7 @@ const PathInput: Component<{
       setToastErrorMessage("Error reading PHP file")
     }
 
-    setIsInputDisabled(false)
+    setGlobalInteractionLock(false)
   }
 
   return (
@@ -28,7 +27,7 @@ const PathInput: Component<{
       <Button
         title={p.title}
         icon={<BsFiletypePhp size="1.25rem" />}
-        isDisabled={isInputDisabled()}
+        isDisabled={globalIteractionLock()}
         onClick={handleFileSelection}
       />
     </div>
