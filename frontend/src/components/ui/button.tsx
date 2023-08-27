@@ -10,7 +10,7 @@ const Button: Component<{
     type="button"
     disabled={p.isDisabled}
     class={
-      "text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
+      "bg-[#f1f1f1] text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
       (p.isDisabled ? "opacity-40" : "hover:bg-slate-300")
     }
     onClick={() => p.onClick()}
