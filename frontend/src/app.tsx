@@ -2,12 +2,9 @@ import { type Component, createSignal } from "solid-js"
 import Sloc from "./components/sloc"
 import FileDiffSelection from "./components/file-diff-selection"
 
-// TODO - Rewrite Go method for calculating folder diffs
-// TODO - Add Go method for calculating cyclomatic complexity
 // TODO - Add Go method for Folder dialog
-
 // TODO - Add folder diff panel
-// TODO - Add cycloamtic complexity panel
+// TODO - cycloamtic complexity
 
 export const [globalIteractionLock, setGlobalInteractionLock] = createSignal(false)
 

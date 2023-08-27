@@ -2,17 +2,25 @@ package source_analysis
 
 import (
 	"fmt"
+	"io/fs"
 	"os"
+	"path/filepath"
+	"slices"
+	"strings"
 
 	"github.com/hexops/gotextdiff"
 	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
+const (
+	MAX_CONCURRENT_JOBS = 8
+	MAX_FILES           = 1000
+)
+
+type FilePathPair struct {
+	firstFilePath  string
+	secondFilePath string
 }
 
 func GetFileDiff(firstFilePath string, secondFilePath string) string {
@@ -38,5 +46,90 @@ func GetFileDiff(firstFilePath string, secondFilePath string) string {
 }
 
 func GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
-	return ""
+	var diffBuilder strings.Builder
+	var filePaths [2][]string
+	jobs := make(chan FilePathPair, MAX_FILES)
+	results := make(chan string, MAX_FILES)
+	jobCount := 0
+
+	// Getting file names from two folders concurrently
+	{
+		channel := make(chan []string, 2)
+		go getPHPFileNames(firstFolderPath, channel)
+		go getPHPFileNames(secondFolderPath, channel)
+		filePaths[0] = <-channel
+		filePaths[1] = <-channel
+	}
+
+	for i := 0; i < MAX_CONCURRENT_JOBS; i++ {
+		go dispatchDiffJobs(jobs, results)
+	}
+
+	for _, firstPath := range filePaths[0] {
+		secondPathIndex, found := slices.BinarySearch(filePaths[1], firstPath)
+		firstPath = firstFolderPath + "/" + firstPath
+		var secondPath string
+
+		if found {
+			secondPath = secondFolderPath + "/" + filePaths[1][secondPathIndex]
+		} else {
+			secondPath = os.DevNull
+		}
+
+		jobs <- FilePathPair{firstPath, secondPath}
+		jobCount += 1
+	}
+
+	// Handling files in second folder that are not in first folder (Converse of above loop)
+	for _, secondPath := range filePaths[1] {
+		_, found := slices.BinarySearch(filePaths[0], secondPath)
+		secondPath = secondFolderPath + "/" + secondPath
+
+		if !found {
+			jobs <- FilePathPair{os.DevNull, secondPath}
+			jobCount += 1
+		}
+	}
+
+	close(jobs)
+
+	for i := 0; i < jobCount; i++ {
+		diffBuilder.WriteString(<-results)
+	}
+
+	return diffBuilder.String()
+}
+
+func dispatchDiffJobs(jobs <-chan FilePathPair, results chan<- string) {
+	for job := range jobs {
+		results <- GetFileDiff(job.firstFilePath, job.secondFilePath)
+	}
+
+	close(results)
+}
+
+func getPHPFileNames(rootDirectory string, channel chan []string) {
+	fileNames := make([]string, 0, MAX_FILES)
+
+	err := filepath.WalkDir(rootDirectory, func(path string, info fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if !info.IsDir() && strings.HasSuffix(info.Name(), ".php") {
+			fileNames = append(fileNames, path)
+		}
+
+		return nil
+	})
+
+	check(err)
+	slices.Sort(fileNames)
+	channel <- fileNames
+}
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
 }
