@@ -4,7 +4,7 @@ import { PromptForFilePath } from "../../../wailsjs/go/app/App"
 import { setToastErrorMessage } from "./error-toast"
 import { BsFiletypePhp } from "solid-icons/bs"
 
-const FilePathInput: Component<{
+const PathInput: Component<{
   title: string
   setFilePath: Setter<string>
 }> = p => {
@@ -35,4 +35,4 @@ const FilePathInput: Component<{
   )
 }
 
-export default FilePathInput
+export default PathInput

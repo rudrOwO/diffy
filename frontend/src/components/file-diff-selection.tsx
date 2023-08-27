@@ -1,6 +1,6 @@
 import { createSignal, type Component, createEffect, onMount } from "solid-js"
 import { GetFileDiff } from "../../wailsjs/go/app/App"
-import FilePathInput from "./ui/file-path-input"
+import PathInput from "./ui/path-input"
 import Box from "./ui/box"
 import Button from "./ui/button"
 import { setToastErrorMessage } from "./ui/error-toast"
@@ -41,8 +41,8 @@ const FileDiffSelection: Component = () => {
   return (
     <Box title="Chose two PHP files to diff them">
       <div class="flex justify-center items-center gap-4">
-        <FilePathInput setFilePath={setFirstFilePath} title="Chose File" />
-        <FilePathInput setFilePath={setSecondFilePath} title="Chose File" />
+        <PathInput setFilePath={setFirstFilePath} title="Chose File" />
+        <PathInput setFilePath={setSecondFilePath} title="Chose File" />
       </div>
       <Button
         title="Show Diff"

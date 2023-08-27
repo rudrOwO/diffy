@@ -1,6 +1,6 @@
 import { createSignal, type Component, createEffect, Show } from "solid-js"
 import { GetSLOC as GetSLOC_Server } from "../../wailsjs/go/app/App"
-import FilePathInput from "./ui/file-path-input"
+import PathInput from "./ui/path-input"
 import Box from "./ui/box"
 import { setToastErrorMessage } from "./ui/error-toast"
 
@@ -29,7 +29,7 @@ createEffect(() => {
 
 const Sloc: Component = () => (
   <Box title="Chose a PHP file to calucate SLOC">
-    <FilePathInput setFilePath={setFilePath} title="Chose File" />
+    <PathInput setFilePath={setFilePath} title="Chose File" />
     <Show when={sloc()}>
       <p class="font-bold">{"Chosen file has " + sloc() + " SLOC"}</p>
     </Show>
