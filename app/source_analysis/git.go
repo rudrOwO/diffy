@@ -11,6 +11,5 @@ func GetFileDiff(firstFilePath string, secondFilePath string) string {
 }
 
 func GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
-	// TODO
 	return ""
 }

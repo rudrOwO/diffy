@@ -1,4 +1,4 @@
-import { type Component, type JSXElement } from "solid-js"
+import type { Component, JSXElement } from "solid-js"
 
 const Button: Component<{
   title: string
@@ -13,7 +13,7 @@ const Button: Component<{
       "text-sm md:text-md lg:text-lg border-2 border-black rounded-lg p-2 " +
       (p.isDisabled ? "opacity-40" : "hover:bg-slate-300")
     }
-    onClick={p.onClick}
+    onClick={() => p.onClick()}
   >
     <div class="flex justify-evenly items-center gap-2">
       {p.icon}
