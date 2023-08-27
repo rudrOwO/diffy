@@ -3,9 +3,10 @@ import Sloc from "./components/sloc"
 import FileDiffSelection from "./components/file-diff-selection"
 
 // TODO - Rewrite Go method for calculating folder diffs
-// TODO - Add folder diff panel
-
 // TODO - Add Go method for calculating cyclomatic complexity
+// TODO - Add Go method for Folder dialog
+
+// TODO - Add folder diff panel
 // TODO - Add cycloamtic complexity panel
 
 const App: Component = () => (

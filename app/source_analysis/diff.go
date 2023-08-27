@@ -16,7 +16,6 @@ func check(e error) {
 }
 
 func GetFileDiff(firstFilePath string, secondFilePath string) string {
-
 	var firstFileContent string
 	var secondFileContent string
 

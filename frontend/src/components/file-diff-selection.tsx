@@ -6,7 +6,7 @@ import Button from "./ui/button"
 import { setToastErrorMessage } from "./ui/error-toast"
 import { AiFillDiff } from "solid-icons/ai"
 import { useNavigate } from "@solidjs/router"
-import { setDiffHtml } from "./diff-renderer"
+import { setDiffString } from "./diff-renderer"
 
 /* NOTE 
   These signals are global to prevent an unnecessary re-render
@@ -16,25 +16,27 @@ const [firstFilePath, setFirstFilePath] = createSignal("")
 const [secondFilePath, setSecondFilePath] = createSignal("")
 const bothFilesSelected = () => firstFilePath() !== "" && secondFilePath() !== ""
 
-createEffect(() => {
-  const diffFiles = async () => {
-    try {
-      const fileDiff = await GetFileDiff(firstFilePath(), secondFilePath())
-      setDiffHtml(fileDiff)
-    } catch (_) {
-      setToastErrorMessage("Error diffing files")
-      setFirstFilePath("")
-      setSecondFilePath("")
-    }
+const getFileDiff_Client = async () => {
+  try {
+    return await GetFileDiff(firstFilePath(), secondFilePath())
+  } catch (_) {
+    setToastErrorMessage("Error diffing files")
+    setFirstFilePath("")
+    setSecondFilePath("")
+    return ""
   }
-
-  if (bothFilesSelected()) {
-    diffFiles()
-  }
-})
+}
 
 const FileDiffSelection: Component = () => {
   const navigate = useNavigate()
+
+  const handleNavigation = async () => {
+    if (bothFilesSelected()) {
+      const fileDiff = await getFileDiff_Client()
+      setDiffString(fileDiff)
+      navigate("/diff")
+    }
+  }
 
   return (
     <Box title="Chose two PHP files to diff them">
@@ -46,13 +48,10 @@ const FileDiffSelection: Component = () => {
         title="Show Diff"
         isDisabled={!bothFilesSelected()}
         icon={<AiFillDiff size="1rem" />}
-        onClick={() => {
-          navigate("/diff")
-        }}
+        onClick={handleNavigation}
       />
     </Box>
   )
 }
 
 export default FileDiffSelection
-export { firstFilePath, secondFilePath }

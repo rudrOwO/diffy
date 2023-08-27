@@ -33,4 +33,4 @@ const DiffRenderer: Component<{}> = () => {
 }
 
 export default DiffRenderer
-export { setDiffString as setDiffHtml }
+export { setDiffString }
