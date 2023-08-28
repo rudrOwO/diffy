@@ -1,9 +1,8 @@
 package main
 
 import (
-	"context"
-
 	app "github.com/rudrOwO/php-code-analyzer/app"
+	source_analysis "github.com/rudrOwO/php-code-analyzer/app/source_analysis"
 	frontend "github.com/rudrOwO/php-code-analyzer/frontend"
 
 	"github.com/wailsapp/wails/v2"
@@ -12,8 +11,8 @@ import (
 )
 
 func main() {
-	// Create an instance of the app structure
-	app := app.NewApp()
+	app := new(app.App)
+	source_analysis := new(source_analysis.SourceAnalysis)
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -25,11 +24,10 @@ func main() {
 			Assets: frontend.Assets,
 		},
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
-		OnStartup: func(ctx context.Context) {
-			app.SetContext(ctx)
-		},
+		OnStartup:        app.SetContext,
 		Bind: []any{
 			app,
+			source_analysis,
 		},
 	})
 

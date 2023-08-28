@@ -1,5 +1,5 @@
 package source_analysis
 
-func GetComplexity(filePath string) int {
+func (s *SourceAnalysis) GetComplexity(filePath string) int {
 	return 42
 }

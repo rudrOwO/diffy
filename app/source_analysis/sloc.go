@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetSLOC(filePath string) int {
+func (s *SourceAnalysis) GetSLOC(filePath string) int {
 	file, err := os.Open(filePath)
 
 	if err != nil {

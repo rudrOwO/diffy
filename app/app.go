@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	source_analysis "github.com/rudrOwO/php-code-analyzer/app/source_analysis"
 	runtime "github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
@@ -13,31 +12,10 @@ type App struct {
 	ctx context.Context
 }
 
-func NewApp() *App {
-	return &App{}
-}
-
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
 func (a *App) SetContext(ctx context.Context) {
 	a.ctx = ctx
-}
-
-// registering methods with the application context (ctx)
-func (a *App) GetSLOC(filePath string) int {
-	return source_analysis.GetSLOC(filePath)
-}
-
-func (a *App) GetFileDiff(firstFilePath string, secondFilePath string) string {
-	return source_analysis.GetFileDiff(firstFilePath, secondFilePath)
-}
-
-func (a *App) GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
-	return source_analysis.GetFolderDiff(firstFolderPath, secondFolderPath)
-}
-
-func (a *App) GetComplexity(filePath string) int {
-	return source_analysis.GetComplexity(filePath)
 }
 
 func (a *App) PromptForFilePath() string {

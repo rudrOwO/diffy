@@ -1,5 +1,5 @@
 import { createSignal, type Component, createEffect, Show } from "solid-js"
-import { GetComplexity as GetClompexity_Server } from "../../wailsjs/go/app/App"
+import { GetComplexity as GetClompexity_Server } from "../../wailsjs/go/source_analysis/SourceAnalysis"
 import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"
 import { setToastErrorMessage } from "./ui/error-toast"
@@ -16,7 +16,7 @@ const getSLOC_Client = async () => {
     const sloc = await GetClompexity_Server(filePath())
     setComplexity(sloc.toString())
   } catch (_) {
-    setToastErrorMessage("Error retrieving SLOC")
+    setToastErrorMessage("Error calculating complexity")
     setFilePath("")
   }
 }

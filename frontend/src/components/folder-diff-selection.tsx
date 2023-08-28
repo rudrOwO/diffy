@@ -1,5 +1,5 @@
 import { createSignal, type Component } from "solid-js"
-import { GetFileDiff } from "../../wailsjs/go/app/App"
+import { GetFileDiff } from "../../wailsjs/go/source_analysis/SourceAnalysis"
 import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"
 import Button from "./ui/button"

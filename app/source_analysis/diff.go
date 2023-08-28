@@ -23,29 +23,11 @@ type FilePathPair struct {
 	secondFilePath string
 }
 
-func GetFileDiff(firstFilePath string, secondFilePath string) string {
-	var firstFileContent string
-	var secondFileContent string
-
-	{
-		bytes, err := os.ReadFile(firstFilePath)
-		check(err)
-		firstFileContent = string(bytes)
-	}
-
-	{
-		bytes, err := os.ReadFile(secondFilePath)
-		check(err)
-		secondFileContent = string(bytes)
-	}
-
-	edits := myers.ComputeEdits(span.URIFromPath(firstFilePath), firstFileContent, secondFileContent)
-	diff := fmt.Sprint(gotextdiff.ToUnified(firstFilePath, secondFilePath, firstFileContent, edits))
-
-	return diff
+func (s *SourceAnalysis) GetFileDiff(firstFilePath string, secondFilePath string) string {
+	return getFileDiff(firstFilePath, secondFilePath)
 }
 
-func GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
+func (s *SourceAnalysis) GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
 	var diffBuilder strings.Builder
 	var filePaths [2][]string
 	jobs := make(chan FilePathPair, MAX_FILES)
@@ -100,7 +82,7 @@ func GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
 
 func dispatchDiffJobs(jobs <-chan FilePathPair, results chan<- string) {
 	for job := range jobs {
-		results <- GetFileDiff(job.firstFilePath, job.secondFilePath)
+		results <- getFileDiff(job.firstFilePath, job.secondFilePath)
 	}
 }
 
@@ -122,6 +104,28 @@ func getPHPFileNames(rootDirectory string, channel chan []string) {
 	check(err)
 	slices.Sort(fileNames)
 	channel <- fileNames
+}
+
+func getFileDiff(firstFilePath string, secondFilePath string) string {
+	var firstFileContent string
+	var secondFileContent string
+
+	{
+		bytes, err := os.ReadFile(firstFilePath)
+		check(err)
+		firstFileContent = string(bytes)
+	}
+
+	{
+		bytes, err := os.ReadFile(secondFilePath)
+		check(err)
+		secondFileContent = string(bytes)
+	}
+
+	edits := myers.ComputeEdits(span.URIFromPath(firstFilePath), firstFileContent, secondFileContent)
+	diff := fmt.Sprint(gotextdiff.ToUnified(firstFilePath, secondFilePath, firstFileContent, edits))
+
+	return diff
 }
 
 func check(e error) {

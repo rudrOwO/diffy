@@ -1,5 +1,5 @@
 import { createSignal, type Component, createEffect, Show } from "solid-js"
-import { GetSLOC as GetSLOC_Server } from "../../wailsjs/go/app/App"
+import { GetSLOC as GetSLOC_Server } from "../../wailsjs/go/source_analysis/SourceAnalysis"
 import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"
 import { setToastErrorMessage } from "./ui/error-toast"
