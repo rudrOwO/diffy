@@ -5,7 +5,7 @@ import { setToastErrorMessage } from "./error-toast"
 import { BsFiletypePhp } from "solid-icons/bs"
 import { globalIteractionLock, setGlobalInteractionLock } from "../../app"
 
-const PathInput: Component<{
+const FilePathInput: Component<{
   title: string
   setFilePath: Setter<string>
 }> = p => {
@@ -34,4 +34,4 @@ const PathInput: Component<{
   )
 }
 
-export default PathInput
+export default FilePathInput

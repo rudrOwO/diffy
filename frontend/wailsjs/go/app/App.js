@@ -18,6 +18,10 @@ export function PromptForFilePath() {
   return window['go']['app']['App']['PromptForFilePath']();
 }
 
+export function PromptForFolderPath() {
+  return window['go']['app']['App']['PromptForFolderPath']();
+}
+
 export function SetContext(arg1) {
   return window['go']['app']['App']['SetContext'](arg1);
 }

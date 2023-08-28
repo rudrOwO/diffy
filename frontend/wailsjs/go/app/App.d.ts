@@ -10,4 +10,6 @@ export function GetSLOC(arg1:string):Promise<number>;
 
 export function PromptForFilePath():Promise<string>;
 
+export function PromptForFolderPath():Promise<string>;
+
 export function SetContext(arg1:context.Context):Promise<void>;

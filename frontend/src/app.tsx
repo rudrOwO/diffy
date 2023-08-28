@@ -1,6 +1,7 @@
 import { type Component, createSignal } from "solid-js"
 import Sloc from "./components/sloc"
-import FileDiffSelection from "./components/file-diff-selection"
+import FileDiffSelection from "./components/folder-diff-selection"
+import FolderDiffSelection from "./components/file-diff-selection copy"
 
 // TODO - Add Go method for Folder dialog
 // TODO - Add folder diff panel
@@ -13,6 +14,7 @@ const App: Component = () => (
     <div class="w-[90%] md:w-[60%] lg:w-[50%] flex flex-col items-center gap-8">
       <Sloc />
       <FileDiffSelection />
+      <FolderDiffSelection />
     </div>
   </div>
 )

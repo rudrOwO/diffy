@@ -1,6 +1,6 @@
-import { createSignal, type Component, createEffect, onMount } from "solid-js"
-import { GetFileDiff } from "../../wailsjs/go/app/App"
-import PathInput from "./ui/path-input"
+import { createSignal, type Component } from "solid-js"
+import { GetFolderDiff } from "../../wailsjs/go/app/App"
+import FolderPathInput from "./ui/folder-path-input"
 import Box from "./ui/box"
 import Button from "./ui/button"
 import { setToastErrorMessage } from "./ui/error-toast"
@@ -13,26 +13,26 @@ import { globalIteractionLock } from "../app"
   These signals are global to prevent an unnecessary re-render
   when the back button is pressed
 */
-const [firstFilePath, setFirstFilePath] = createSignal("")
-const [secondFilePath, setSecondFilePath] = createSignal("")
-const bothFilesSelected = () => firstFilePath() !== "" && secondFilePath() !== ""
+const [firstFolderPath, setFirstFolderPath] = createSignal("")
+const [secondFolderPath, setSecondFolderPath] = createSignal("")
+const bothFoldersSelected = () => firstFolderPath() !== "" && secondFolderPath() !== ""
 
 const getFileDiff_Client = async () => {
   try {
-    return await GetFileDiff(firstFilePath(), secondFilePath())
+    return await GetFolderDiff(firstFolderPath(), secondFolderPath())
   } catch (_) {
     setToastErrorMessage("Error diffing files")
-    setFirstFilePath("")
-    setSecondFilePath("")
+    setFirstFolderPath("")
+    setSecondFolderPath("")
     return ""
   }
 }
 
-const FileDiffSelection: Component = () => {
+const FolderDiffSelection: Component = () => {
   const navigate = useNavigate()
 
   const handleNavigation = async () => {
-    if (bothFilesSelected()) {
+    if (bothFoldersSelected()) {
       const fileDiff = await getFileDiff_Client()
       setDiffString(fileDiff)
       navigate("/diff")
@@ -40,14 +40,14 @@ const FileDiffSelection: Component = () => {
   }
 
   return (
-    <Box title="Chose two PHP files to diff them">
+    <Box title="Chose two project folders to diff them">
       <div class="flex justify-center items-center gap-4">
-        <PathInput setFilePath={setFirstFilePath} title="Chose File" />
-        <PathInput setFilePath={setSecondFilePath} title="Chose File" />
+        <FolderPathInput setFilePath={setFirstFolderPath} title="Chose Folder" />
+        <FolderPathInput setFilePath={setSecondFolderPath} title="Chose Folder" />
       </div>
       <Button
         title="Show Diff"
-        isDisabled={!bothFilesSelected() || globalIteractionLock()}
+        isDisabled={!bothFoldersSelected() || globalIteractionLock()}
         icon={<AiFillDiff size="1rem" />}
         onClick={handleNavigation}
       />
@@ -55,4 +55,4 @@ const FileDiffSelection: Component = () => {
   )
 }
 
-export default FileDiffSelection
+export default FolderDiffSelection

@@ -62,3 +62,24 @@ func (a *App) PromptForFilePath() string {
 
 	return filePath
 }
+
+func (a *App) PromptForFolderPath() string {
+	var currentDirectoryPath string
+
+	if runtime.Environment(a.ctx).BuildType == "dev" {
+		currentDirectoryPath = "/home/rudro/Dev/test"
+	} else {
+		currentDirectoryPath, _ = os.Getwd()
+	}
+
+	folderPath, err := runtime.OpenDirectoryDialog(a.ctx, runtime.OpenDialogOptions{
+		DefaultDirectory: currentDirectoryPath,
+		Title:            "Chose a Project Folder",
+	})
+
+	if err != nil {
+		fmt.Println("Error in Prompt", err)
+	}
+
+	return folderPath
+}

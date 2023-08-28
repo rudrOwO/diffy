@@ -67,11 +67,10 @@ func GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
 
 	for _, firstPath := range filePaths[0] {
 		secondPathIndex, found := slices.BinarySearch(filePaths[1], firstPath)
-		firstPath = firstFolderPath + "/" + firstPath
 		var secondPath string
 
 		if found {
-			secondPath = secondFolderPath + "/" + filePaths[1][secondPathIndex]
+			secondPath = filePaths[1][secondPathIndex]
 		} else {
 			secondPath = os.DevNull
 		}
@@ -83,7 +82,6 @@ func GetFolderDiff(firstFolderPath string, secondFolderPath string) string {
 	// Handling files in second folder that are not in first folder (Converse of above loop)
 	for _, secondPath := range filePaths[1] {
 		_, found := slices.BinarySearch(filePaths[0], secondPath)
-		secondPath = secondFolderPath + "/" + secondPath
 
 		if !found {
 			jobs <- FilePathPair{os.DevNull, secondPath}
@@ -104,8 +102,6 @@ func dispatchDiffJobs(jobs <-chan FilePathPair, results chan<- string) {
 	for job := range jobs {
 		results <- GetFileDiff(job.firstFilePath, job.secondFilePath)
 	}
-
-	close(results)
 }
 
 func getPHPFileNames(rootDirectory string, channel chan []string) {
@@ -125,6 +121,7 @@ func getPHPFileNames(rootDirectory string, channel chan []string) {
 
 	check(err)
 	slices.Sort(fileNames)
+	fmt.Println("FILE NAMES:", fileNames)
 	channel <- fileNames
 }
 
