@@ -2,9 +2,8 @@ import { type Component, createSignal } from "solid-js"
 import Sloc from "./components/sloc"
 import FileDiffSelection from "./components/folder-diff-selection"
 import FolderDiffSelection from "./components/file-diff-selection copy"
+import Complexity from "./components/complexity"
 
-// TODO - Add Go method for Folder dialog
-// TODO - Add folder diff panel
 // TODO - cycloamtic complexity
 
 export const [globalIteractionLock, setGlobalInteractionLock] = createSignal(false)
@@ -15,6 +14,7 @@ const App: Component = () => (
       <Sloc />
       <FileDiffSelection />
       <FolderDiffSelection />
+      <Complexity />
     </div>
   </div>
 )

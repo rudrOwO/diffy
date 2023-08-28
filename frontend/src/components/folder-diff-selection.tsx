@@ -1,4 +1,4 @@
-import { createSignal, type Component, createEffect, onMount } from "solid-js"
+import { createSignal, type Component } from "solid-js"
 import { GetFileDiff } from "../../wailsjs/go/app/App"
 import FilePathInput from "./ui/file-path-input"
 import Box from "./ui/box"

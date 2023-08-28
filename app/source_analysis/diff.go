@@ -121,7 +121,6 @@ func getPHPFileNames(rootDirectory string, channel chan []string) {
 
 	check(err)
 	slices.Sort(fileNames)
-	fmt.Println("FILE NAMES:", fileNames)
 	channel <- fileNames
 }
 

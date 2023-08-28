@@ -36,6 +36,10 @@ func (a *App) GetFolderDiff(firstFolderPath string, secondFolderPath string) str
 	return source_analysis.GetFolderDiff(firstFolderPath, secondFolderPath)
 }
 
+func (a *App) GetComplexity(filePath string) int {
+	return source_analysis.GetComplexity(filePath)
+}
+
 func (a *App) PromptForFilePath() string {
 	var currentDirectoryPath string
 
