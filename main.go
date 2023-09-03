@@ -19,7 +19,7 @@ func main() {
 		Title:       "PHP Code Analyzer",
 		StartHidden: false,
 		Width:       1280,
-		Height:      900,
+		Height:      720,
 		AssetServer: &assetserver.Options{
 			Assets: frontend.Assets,
 		},
