@@ -3,12 +3,12 @@ import Button from "./button"
 import { PromptForFilePath } from "../../../wailsjs/go/app/App"
 import { setToastErrorMessage } from "./error-toast"
 import { BsFiletypePhp } from "solid-icons/bs"
-import { globalIteractionLock, setGlobalInteractionLock } from "../../app"
+import { globalInteractionLock, setGlobalInteractionLock } from "../../app"
 
 const FilePathInput: Component<{
   title: string
   setFilePath: Setter<string>
-}> = p => {
+}> = (p) => {
   const handleFileSelection = async () => {
     setGlobalInteractionLock(true)
 
@@ -27,7 +27,7 @@ const FilePathInput: Component<{
       <Button
         title={p.title}
         icon={<BsFiletypePhp size="1.25rem" />}
-        isDisabled={globalIteractionLock()}
+        isDisabled={globalInteractionLock()}
         onClick={handleFileSelection}
       />
     </div>

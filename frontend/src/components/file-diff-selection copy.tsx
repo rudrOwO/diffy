@@ -7,7 +7,7 @@ import { setToastErrorMessage } from "./ui/error-toast"
 import { AiFillDiff } from "solid-icons/ai"
 import { useNavigate } from "@solidjs/router"
 import { setDiffString } from "./diff-renderer"
-import { globalIteractionLock } from "../app"
+import { globalInteractionLock } from "../app"
 
 /* NOTE 
   These signals are global to prevent an unnecessary re-render
@@ -15,7 +15,8 @@ import { globalIteractionLock } from "../app"
 */
 const [firstFolderPath, setFirstFolderPath] = createSignal("")
 const [secondFolderPath, setSecondFolderPath] = createSignal("")
-const bothFoldersSelected = () => firstFolderPath() !== "" && secondFolderPath() !== ""
+const bothFoldersSelected = () =>
+  firstFolderPath() !== "" && secondFolderPath() !== ""
 
 const getFileDiff_Client = async () => {
   try {
@@ -42,12 +43,18 @@ const FolderDiffSelection: Component = () => {
   return (
     <Box title="Chose two project folders to diff them">
       <div class="flex justify-center items-center gap-4">
-        <FolderPathInput setFilePath={setFirstFolderPath} title="Chose Folder" />
-        <FolderPathInput setFilePath={setSecondFolderPath} title="Chose Folder" />
+        <FolderPathInput
+          setFilePath={setFirstFolderPath}
+          title="Chose Folder"
+        />
+        <FolderPathInput
+          setFilePath={setSecondFolderPath}
+          title="Chose Folder"
+        />
       </div>
       <Button
         title="Show Diff"
-        isDisabled={!bothFoldersSelected() || globalIteractionLock()}
+        isDisabled={!bothFoldersSelected() || globalInteractionLock()}
         icon={<AiFillDiff size="1rem" />}
         onClick={handleNavigation}
       />

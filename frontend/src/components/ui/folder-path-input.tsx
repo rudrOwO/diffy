@@ -3,12 +3,12 @@ import Button from "./button"
 import { PromptForFolderPath } from "../../../wailsjs/go/app/App"
 import { setToastErrorMessage } from "./error-toast"
 import { BsFolderFill } from "solid-icons/bs"
-import { globalIteractionLock, setGlobalInteractionLock } from "../../app"
+import { globalInteractionLock, setGlobalInteractionLock } from "../../app"
 
 const FolderPathInput: Component<{
   title: string
   setFilePath: Setter<string>
-}> = p => {
+}> = (p) => {
   const handleFolderSelection = async () => {
     setGlobalInteractionLock(true)
 
@@ -27,7 +27,7 @@ const FolderPathInput: Component<{
       <Button
         title={p.title}
         icon={<BsFolderFill size="1.25rem" />}
-        isDisabled={globalIteractionLock()}
+        isDisabled={globalInteractionLock()}
         onClick={handleFolderSelection}
       />
     </div>

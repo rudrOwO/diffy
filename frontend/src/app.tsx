@@ -4,7 +4,7 @@ import FileDiffSelection from "./components/folder-diff-selection"
 import FolderDiffSelection from "./components/file-diff-selection copy"
 import Complexity from "./components/complexity"
 
-export const [globalIteractionLock, setGlobalInteractionLock] = createSignal(false)
+export const [globalInteractionLock, setGlobalInteractionLock] = createSignal(false)
 
 const App: Component = () => (
   <div class="bg-[#fafafa] h-[100vh] w-[100vw] grid place-items-center overflow-scroll">
