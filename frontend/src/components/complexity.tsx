@@ -11,7 +11,7 @@ import { setToastErrorMessage } from "./ui/error-toast"
 const [complexity, setComplexity] = createSignal("")
 const [filePath, setFilePath] = createSignal("")
 
-const getSLOC_Client = async () => {
+const getComplexity_Client = async () => {
   try {
     const sloc = await GetClompexity_Server(filePath())
     setComplexity(sloc.toString())
@@ -23,7 +23,7 @@ const getSLOC_Client = async () => {
 
 createEffect(() => {
   if (filePath() !== "") {
-    getSLOC_Client()
+    getComplexity_Client()
   }
 })
 
