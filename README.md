@@ -1,11 +1,9 @@
 <div align="center">
 <img width="120px" src="/docs/php-elephant.png" />
 
-## PHP Code Analyzer
+# PHP Code Analyzer
 
 A trivial code analysis tool I made to get familiar with [Solid.js](https://solidjs.com) and [Go](https://go.dev)
-
----
 
 #### Build with the most no-nonsense desktop app development stack
 
@@ -15,9 +13,7 @@ A trivial code analysis tool I made to get familiar with [Solid.js](https://soli
 
 #### [Solid.js](https://solidjs.com)&nbsp;&nbsp;x&nbsp;&nbsp;[Wails](https://wails.io)
 
----
-
-#### Screeshots
+#### 👀👀
 
 <div>
     <img width="300px" src="/docs/ss_1.png" />
